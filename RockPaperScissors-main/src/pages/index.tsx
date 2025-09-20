@@ -240,16 +240,10 @@ return (
 
       
       <div className={styles.pickContainerBottom}>
-        <div className={styles.buttonWrapper}>
-          <Button disable={isPlaying} startPlay={startPlay} choice="paper"/>
-        </div>
-        <div className={styles.buttonWrapper}>
-          <Button disable={isPlaying} startPlay={startPlay} choice="scissors"/>
-        </div>
-        <div className={styles.buttonWrapper}>
-          <Button disable={isPlaying} startPlay={startPlay} choice="rock"/>
-        </div>
-      </div>
+          <div className={styles.buttonWrapper}><Button disable={isPlaying} startPlay={startPlay} choice="paper"/></div>
+                <div className={styles.buttonWrapper}><Button disable={isPlaying} startPlay={startPlay} choice="scissors"/></div>
+                <div className={styles.buttonWrapper}><Button disable={isPlaying} startPlay={startPlay} choice="rock"/></div> 
+              </div>
     </div>
   
 </main>
