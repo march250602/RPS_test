@@ -1,0 +1,36 @@
+
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: kalo
+      RABBITMQ_DEFAULT_PASS: kalo
+
+  nest-app:
+    build:
+      context: ./backend
+      target: prod  
+    container_name: backend-nest-app
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - rabbitmq
+
+  next-app:
+    build:
+      context: ./RockPaperScissors-main
+      target: prod 
+    container_name: fronted-next-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./RockPaperScissors-main/.env
+    depends_on:
+      - nest-app
