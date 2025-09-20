@@ -406,6 +406,39 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  
+
+  .buttonContainer {
+    button {
+      height: 0.5rem;
+      width: 0.5rem;
+      
+      &.paper {
+        box-shadow: 
+          0px -2px 0 6px #2b2c31,
+          0 0 0 8px #4865f4,
+          inset 0px 1px 0 1px #d6d6d6;
+        margin-right: 0;
+      }
+    
+      &.scissors {
+        box-shadow: 
+          0px -2px 0 6px hsl(40, 84%, 53%),
+          0 0 0 8px hsl(39, 89%, 49%),
+          inset 0px 1px 0 1px #d6d6d6;
+      }
+    
+      &.rock {
+        box-shadow: 
+          0px -2px 0 6px hsl(349, 70%, 56%),
+          0 0 0 8px hsl(349, 71%, 52%),
+          inset 0px 1px 0 1px #d6d6d6;
+      }
+    }
+  }
+}
 .mainGameContainer {
   width: 100%;
   max-width: 800px;
@@ -422,19 +455,7 @@
   }
 }
 
-.choicesPreview {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 1rem;
-  }
-}
+
 
 .previewBox {
   display: flex;
@@ -443,73 +464,16 @@
   gap: 0.5rem;
 }
 
-.previewLabel {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  opacity: 0.8;
-  margin: 0;
-  
-  @media (max-width: 768px) {
-    font-size: 0.8rem;
-  }
-}
-
-.previewIcon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  
-  @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-  }
-}
 
 
-.gamingWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-}
 
-.gamingContainer {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  gap: 2rem;
-}
 
-.choicesResult {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  margin-top: 2rem;
-  flex: 1;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 1rem;
-  }
-}
+
+
+
+
+
+
 
 .playerChoiceContainer,
 .houseChoiceContainer {
@@ -543,46 +507,10 @@
   // }
 }
 
-.placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  border: 8px solid rgba(255, 255, 255, 0.1);
-  animation: pulse 2s infinite;
-  
-  @media (max-width: 480px) {
-    width: 80px;
-    height: 80px;
-  }
-}
 
 
 
-.playAgainButton {
-  background: white;
-  color: hsl(229, 25%, 31%);
-  border: none;
-  padding: 15px 40px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: hsl(229, 25%, 31%);
-    color: white;
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 480px) {
-    padding: 12px 30px;
-    font-size: 1rem;
-  }
-}
+
 
 .pickContainerBottom {
   display: grid;
@@ -608,31 +536,6 @@
 }
 
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 
 @media (max-width: 768px) {
@@ -664,8 +567,6 @@
     height: 100px;
   }
   
-  .resultText {
-    font-size: 1.8rem;
-  }
+ 
 }
 
