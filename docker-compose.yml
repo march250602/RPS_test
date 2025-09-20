@@ -10,6 +10,12 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: kalo
       RABBITMQ_DEFAULT_PASS: kalo
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+      start_period: 10s
 
   nest-app:
     build:
@@ -21,8 +27,8 @@ services:
     env_file:
       - ./backend/.env
     depends_on:
-      - rabbitmq
-
+      rabbitmq:
+        condition: service_healthy
   next-app:
     build:
       context: ./RockPaperScissors-main
@@ -33,4 +39,5 @@ services:
     env_file:
       - ./RockPaperScissors-main/.env
     depends_on:
-      - nest-app
+      nest-app:
+        condition: service_started
