@@ -54,7 +54,7 @@
       0px -3px 0 10px #5671f5,
        0 0 0 13px #4865f4,
        inset 0px 2px 0 2px #d6d6d6;
-       margin-right: 2rem;
+      
     }
   
     .scissors{
@@ -490,6 +490,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
   
   @media (max-width: 768px) {
@@ -498,7 +499,9 @@
   }
   
   @media (max-width: 480px) {
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    
   }
 }
 
@@ -520,19 +523,9 @@
   .pickContainerBottom {
     order: 3;
     margin-top: 2rem;
+    
   }
+  
 }
 
-@media (max-height: 600px) {
-  .mainGameContainer {
-    min-height: 90vh;
-  }
-  
-  .choiceBox {
-    width: 100px;
-    height: 100px;
-  }
-  
-  
-}
 
