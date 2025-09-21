@@ -45,7 +45,10 @@ export default function Home({scoreCookie, HscoreCookie}: HomeProps) {
      
     }
   }
-
+ // Set Score with Cookie
+useEffect(() =>{
+    Cookies.set(`scoreCookie`, String(score));
+  },[score])
   // Get High Score from Server
 useEffect(() => {
   const getHighScore = async () => {
