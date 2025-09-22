@@ -4,7 +4,7 @@
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Deployment Steps](#deployment-steps)
-
+- [API Testing Scripts (Postman)](#api-testing-scripts-postman)
 
 
 ## Overview 
@@ -167,7 +167,7 @@ pm.test("Response has choice and timestamp", function () {
 ### POST `/api/update-score`
 **Purpose:** อัปเดตคะแนน highScore  
 
-**Body (raw JSON)**
+**Body (raw JSON) Example**
 ```json
 {
     "score": 50
