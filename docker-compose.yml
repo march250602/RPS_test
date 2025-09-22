@@ -26,8 +26,6 @@ services:
       - "4000:4000"
     env_file:
       - ./backend/.env
-    environment:
-      FRONTEND: http://next-app:3000 
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -40,9 +38,6 @@ services:
       - "3000:3000"
     env_file:
       - ./RockPaperScissors-main/.env
-    environment:
-      REACT_APP_API_URL: http://nest-app:4000
-      NEXT_PUBLIC_SOCKET_URL : http://nest-app:4000
     depends_on:
       nest-app:
         condition: service_started
