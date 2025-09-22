@@ -13,9 +13,9 @@ interface HomeProps{
 }
 
 
-export default function Home({scoreCookie}: HomeProps) {
+export default function Home({scoreCookie, , highScore}: HomeProps) {
   const [score, setScore] = useState(scoreCookie ?? 0);
-  const [highScore, setHighScore] =useState(0);
+  const [highScore, setHighScore] =useState(highScore);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showModal, setShowModal] = useState(false);
