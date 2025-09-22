@@ -50,22 +50,22 @@ useEffect(() =>{
     Cookies.set(`scoreCookie`, String(score));
   },[score])
   // Get High Score from Server
-useEffect(() => {
-  const getHighScore = async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
-      const data = await res.json(); // แปลง response เป็น json
-      if (data.score !== undefined || !isNaN(data.score)) {
-         console.error('Get-score:', data);
-        setHighScore(Number(data.score)); // update state
-      }
-    } catch (error) {
-      console.error('Failed to fetch high score:', error);
-    }
-  };
+// useEffect(() => {
+//   const getHighScore = async () => {
+//     try {
+//       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
+//       const data = await res.json(); // แปลง response เป็น json
+//       if (data.score !== undefined || !isNaN(data.score)) {
+//          console.error('Get-score:', data);
+//         setHighScore(Number(data.score)); // update state
+//       }
+//     } catch (error) {
+//       console.error('Failed to fetch high score:', error);
+//     }
+//   };
 
-  getHighScore(); 
-}, []); 
+//   getHighScore(); 
+// }, []); 
 
 // Connect Socket For geting msg from msg broker
  useEffect(() => {
@@ -264,15 +264,21 @@ return (
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { scoreCookie} = ctx.req.cookies;
-  
-  
   const initialScore = isNaN(Number(scoreCookie)) ? 0 : Number(scoreCookie);
   
+  let initialHighScore = 0;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
+    const data = await res.json();
+    initialHighScore = data.score !== undefined && !isNaN(data.score) ? Number(data.score) : 0;
+  } catch (error) {
+    console.error('Failed to fetch highScore:', error);
+  }
   
   return {
     props: {
       scoreCookie: initialScore,
-      
+      highScore: initialHighScore,
     }
   };
 }
