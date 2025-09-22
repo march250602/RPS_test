@@ -61,6 +61,14 @@ git clone https://github.com/march250602/RPS_test.git
 ### 2) แก้ไขไฟล์ `./RockPaperScissors-main/.env`  
 (`HostIP-Address` คือ IP address หรือ domain name ของเครื่อง/เซิร์ฟเวอร์)
 
+ไปที่ Directory .\RPS_test\RockPaperScissors-main\
+```bash
+cd .\RPS_test\RockPaperScissors-main\
+```
+จากนั้น เปิดไฟล.env และแก้ไข้
+```bash
+nano .env
+```
 **Before**
 ```env
 NEXT_PUBLIC_API_URL='http://localhost:4000'
@@ -73,13 +81,17 @@ NEXT_PUBLIC_SOCKET_URL='http://<HostIP-Address>:4000'
 ```
 ### 3) แก้ไขไฟล์ ./backend/.env 
 (`HostIP-Address` คือ IP address หรือ domain name ของเครื่อง/เซิร์ฟเวอร์)
+
+ไปที่ Directory .\RPS_test\backend\
 ```bash
-cd .\RPS_test\RockPaperScissors-main\
-```bash
-จากนั้น เปิดไฟล.env ด้วย
+cd .\RPS_test\backend\ (หากคุณ อยู่ root)
+or
+cd ..\backend (หากคุณ อยู่ folder ./RockPaperScissors-main/)
+```
+จากนั้น เปิดไฟล.env และแก้ไข้
 ```bash
 nano .env
-```bash
+```
 **Before**
 ```env
 Frontend=http://localhost:3000
