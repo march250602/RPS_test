@@ -9,13 +9,13 @@ import { io } from "socket.io-client";
 
 interface HomeProps{
   scoreCookie: number;
- 
+  highScore_Server: number;
 }
 
 
-export default function Home({scoreCookie, , highScore}: HomeProps) {
+export default function Home({scoreCookie, highScore_Server}: HomeProps) {
   const [score, setScore] = useState(scoreCookie ?? 0);
-  const [highScore, setHighScore] =useState(highScore);
+  const [highScore, setHighScore] =useState(highScore_Server);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -278,7 +278,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       scoreCookie: initialScore,
-      highScore: initialHighScore,
+      highScore_Server: initialHighScore,
     }
   };
 }
