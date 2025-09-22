@@ -7,7 +7,7 @@
 
 
 
-## Overview
+## Overview 
 โปรเจกต์ (Rock Paper Scissors) นี้ประกอบด้วย 3 services:
 
 - **Frontend (Next.js)** – ใช้สำหรับ UI/UX  
@@ -15,7 +15,31 @@
 - **RabbitMQ** – Message Broker  
 
 ทั้งสามจะถูก deploy ผ่าน **Docker Compose**
+### Architecture
+```mermaid
+flowchart TD
+    subgraph UserContainer["🧑 User (Browser)"]
+        User((User))
+    end
 
+    subgraph FrontendContainer["🌐 Frontend Container"]
+        Frontend[Next.js Frontend]
+    end
+
+    subgraph BackendContainer["🟦 Backend Container"]
+        Backend[Nest.js Backend]
+    end
+
+    subgraph BrokerContainer[📩 Message Broker Container]
+        RabbitMQ[(RabbitMQ Broker)]
+    end
+
+    %% Connections
+    User -->|Interact| Frontend
+    Frontend <-->|API Calls / WebSocket| Backend
+    Backend -->|Publish| RabbitMQ
+    RabbitMQ -->|Consume| Backend
+```
 
 
 ## Prerequisites
