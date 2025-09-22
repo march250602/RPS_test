@@ -56,7 +56,7 @@ useEffect(() => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
       const data = await res.json(); // แปลง response เป็น json
       if (data.score !== undefined || !isNaN(data.score)) {
-         console.error('Get-score:', data);
+         console.log('Get-score:', data);
         setHighScore(Number(data.score)); // update state
       }
     } catch (error) {
@@ -78,7 +78,8 @@ useEffect(() => {
     const parsed = JSON.parse(msg);       
     const score = Number(parsed.data.highScore); 
     if (!isNaN(score)) {
-      setHighScore(score);                 
+      setHighScore(score);
+      console.log('Broker msg:', score);
     }
   } catch (err) {
     console.error('Invalid JSON:', msg);
