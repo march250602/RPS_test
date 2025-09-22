@@ -73,7 +73,13 @@ NEXT_PUBLIC_SOCKET_URL='http://<HostIP-Address>:4000'
 ```
 ### 3) แก้ไขไฟล์ ./backend/.env 
 (`HostIP-Address` คือ IP address หรือ domain name ของเครื่อง/เซิร์ฟเวอร์)
-
+```bash
+cd .\RPS_test\RockPaperScissors-main\
+```bash
+จากนั้น เปิดไฟล.env ด้วย
+```bash
+nano .env
+```bash
 **Before**
 ```env
 Frontend=http://localhost:3000
@@ -85,6 +91,7 @@ Frontend=http://<HostIP-Address>:3000
 
 
 ### 4) run docker compose
+รัน Docker compose ที่ directory ./RPS_test/
 ```bash
 sudo docker-compose -f docker-compose.yml up -d --build
 ```
