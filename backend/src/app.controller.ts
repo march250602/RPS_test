@@ -18,7 +18,7 @@ export class AppController {
   
   updateScore(@Body('score') score: number) {
     const highScore = this.appService.updateScore(score);
-     if (result) {
+     if (highScore) {
     return { res: "successfully updated" };
   } else {
     return { res: "update failed" };
