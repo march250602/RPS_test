@@ -21,7 +21,7 @@ export class AppController {
      if (highScore.updated) {
     return { res: "successfully updated" };
   } else {
-    return { res: "update failed" };
+    return { res: "no update needed" };
   }
   }
 
