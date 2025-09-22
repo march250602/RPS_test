@@ -123,7 +123,7 @@ sudo docker-compose -f docker-compose.yml up -d --build
 ## API Testing Scripts (Postman)
 
 ### 1️⃣ GET `/api/get-score`
-**Purpose:** ดึง high score  
+**Purpose:** ดึงค่า high score ตอนที่เบราว์เซอร์โหลดหน้า
 
 **Postman Test Script (Tests Tab)**
 
