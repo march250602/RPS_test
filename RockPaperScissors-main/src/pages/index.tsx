@@ -9,13 +9,13 @@ import { io } from "socket.io-client";
 
 interface HomeProps{
   scoreCookie: number;
-  highScore_Server: number;
+ 
 }
 
 
-export default function Home({scoreCookie, highScore_Server}: HomeProps) {
+export default function Home({scoreCookie}: HomeProps) {
   const [score, setScore] = useState(scoreCookie ?? 0);
-  const [highScore, setHighScore] =useState(highScore_Server);
+  const [highScore, setHighScore] =useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -50,22 +50,22 @@ useEffect(() =>{
     Cookies.set(`scoreCookie`, String(score));
   },[score])
   // Get High Score from Server
-// useEffect(() => {
-//   const getHighScore = async () => {
-//     try {
-//       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
-//       const data = await res.json(); // แปลง response เป็น json
-//       if (data.score !== undefined || !isNaN(data.score)) {
-//          console.error('Get-score:', data);
-//         setHighScore(Number(data.score)); // update state
-//       }
-//     } catch (error) {
-//       console.error('Failed to fetch high score:', error);
-//     }
-//   };
+useEffect(() => {
+  const getHighScore = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
+      const data = await res.json(); // แปลง response เป็น json
+      if (data.score !== undefined || !isNaN(data.score)) {
+         console.error('Get-score:', data);
+        setHighScore(Number(data.score)); // update state
+      }
+    } catch (error) {
+      console.error('Failed to fetch high score:', error);
+    }
+  };
 
-//   getHighScore(); 
-// }, []); 
+  getHighScore(); 
+}, []); 
 
 // Connect Socket For geting msg from msg broker
  useEffect(() => {
@@ -264,21 +264,15 @@ return (
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { scoreCookie} = ctx.req.cookies;
+  
+  
   const initialScore = isNaN(Number(scoreCookie)) ? 0 : Number(scoreCookie);
   
-  let initialHighScore = 0;
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-score`);
-    const data = await res.json();
-    initialHighScore = data.score !== undefined && !isNaN(data.score) ? Number(data.score) : 0;
-  } catch (error) {
-    console.error('Failed to fetch highScore:', error);
-  }
   
   return {
     props: {
       scoreCookie: initialScore,
-      highScore_Server: initialHighScore,
+      
     }
   };
 }
