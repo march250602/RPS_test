@@ -18,7 +18,11 @@ export class AppController {
   
   updateScore(@Body('score') score: number) {
     const highScore = this.appService.updateScore(score);
-    return { "res" : "successfully updated" };
+     if (result) {
+    return { res: "successfully updated" };
+  } else {
+    return { res: "update failed" };
+  }
   }
 
   @Get('api/bot-choice')
