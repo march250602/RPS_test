@@ -117,3 +117,85 @@ sudo docker-compose -f docker-compose.yml up -d --build
 > - Port:4000 (Backend)
 
 > - Port:5672 และ Port:15672 (RabbitMQ Management)
+
+
+
+## API Testing Scripts (Postman)
+
+### 1️⃣ GET `/api/get-score`
+**Purpose:** ดึง high score  
+
+**Postman Test Script (Tests Tab)**
+
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response has score not NULL", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property("score");
+    pm.expect(jsonData.score).to.be.a("number");
+});
+```
+
+### GET `/api/bot-choice`
+**Purpose:** ดึง bot choice แบบสุ่ม  
+
+**Postman Test Script (Tests Tab)**
+
+```javascript
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Response has choice and timestamp", function () {
+    const jsonData = pm.response.json();
+
+    // ต้องมี property choice และ timestamp
+    pm.expect(jsonData).to.have.property("choice");
+    pm.expect(["paper", "scissors", "rock"]).to.include(jsonData.choice);
+
+    pm.expect(jsonData).to.have.property("timestamp");
+});
+
+```
+
+
+### POST `/api/update-score`
+**Purpose:** อัปเดตคะแนน highScore  
+
+**Body (raw JSON)**
+```json
+{
+    "score": 50
+}
+```
+```javascript
+pm.test("Status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+
+pm.test("Response has 'res' property", function () {
+    const jsonData = pm.response.json();
+
+    pm.expect(jsonData).to.have.property("res");
+    pm.expect(jsonData.res).to.be.a("string");
+
+    
+    pm.expect(["successfully updated", "no update needed"]).to.include(jsonData.res);
+
+    console.log("API Response:", jsonData.res);
+});
+
+
+pm.test("highScore should be number if available", function () {
+    const jsonData = pm.response.json();
+
+    if (jsonData.result && jsonData.result.highScore !== undefined) {
+        pm.expect(jsonData.result.highScore).to.be.a("number");
+    }
+});
