@@ -9,11 +9,11 @@ import { io } from "socket.io-client";
 
 interface HomeProps{
   scoreCookie: number;
-  HscoreCookie: number;
+ 
 }
 
 
-export default function Home({scoreCookie, HscoreCookie}: HomeProps) {
+export default function Home({scoreCookie}: HomeProps) {
   const [score, setScore] = useState(scoreCookie ?? 0);
   const [highScore, setHighScore] =useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -263,16 +263,16 @@ return (
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { scoreCookie, HscoreCookie } = ctx.req.cookies;
+  const { scoreCookie} = ctx.req.cookies;
   
   
   const initialScore = isNaN(Number(scoreCookie)) ? 0 : Number(scoreCookie);
-  const initialHighScore = isNaN(Number(HscoreCookie)) ? 0 : Number(HscoreCookie);
+  
   
   return {
     props: {
       scoreCookie: initialScore,
-      HscoreCookie: initialHighScore,
+      
     }
   };
 }
