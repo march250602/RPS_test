@@ -23,6 +23,11 @@ export class AppService  {
       this.client.emit(process.env.QUEUE_NAME , { highScore: this.highScore });
      return { updated: true, highScore: this.highScore };
     }
+   if (playerScore == this.highScore) {
+      
+     return { updated: true, highScore: this.highScore };
+    }
+   
     return { updated: false, highScore: this.highScore };
   }
 
