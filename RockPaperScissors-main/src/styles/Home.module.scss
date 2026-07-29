@@ -553,9 +553,8 @@
   }
 
   .mainGameContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
-    gap: 2rem;
+    padding-block: 0;
+    gap: clamp(1.25rem, 4vh, 1.75rem);
   }
 
   .rulesButton {
