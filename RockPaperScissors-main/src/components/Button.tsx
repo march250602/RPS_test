@@ -1,9 +1,11 @@
 import styles from '../styles/Home.module.scss';
 
+type Choice = 'paper' | 'scissors' | 'rock';
+
 interface ButtonProps{
-    startPlay?: (choice: 'paper' | 'scissors' | 'rock') => void;
+    startPlay?: (choice: Choice) => void;
     disable:boolean;
-    choice: 'paper' | 'scissors' | 'rock'  ;
+    choice: Choice | null;
     result?:boolean;
 }
 
@@ -17,9 +19,10 @@ export function Button({startPlay, disable, choice, result} : ButtonProps){
             className={
                 choice === 'paper'? styles.paper:
                 choice === 'rock' ? styles.rock :
-                styles.scissors    
+                choice === 'scissors' ? styles.scissors :
+                styles.blank
             }
-            onClick={() => startPlay(choice)}
+            onClick={startPlay && choice ? () => startPlay(choice) : undefined}
             >
                 {choice ? (
             <img src={`/icon-${choice}.svg`} alt={choice}/>

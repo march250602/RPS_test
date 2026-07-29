@@ -1,10 +1,20 @@
 html,
 body {
+  min-width: 320px;
+  min-height: 100%;
   font-family: Barlow Semi Condensed, sans-serif;
   font-size: 1rem;
   background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   background-attachment: fixed;
   background-size: cover;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100%;
 }
 
 a {
@@ -20,6 +30,7 @@ a {
 
 button{
   cursor: pointer;
+  font: inherit;
 }
 
 :root {
